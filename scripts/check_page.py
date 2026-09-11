@@ -40,7 +40,9 @@ def main():
         log(__doc__); return 1
     html = pathlib.Path(sys.argv[1]).resolve()
     expect_stories = int(sys.argv[2]) if len(sys.argv) > 2 else None
-    expect_pages = int(sys.argv[3]) if len(sys.argv) > 3 else None
+    expect_per = int(sys.argv[3]) if len(sys.argv) > 3 else None
+    expect_pages = (expect_stories * expect_per
+                    if (expect_stories and expect_per) else None)
 
     chrome = find_chrome()
     if not chrome:
